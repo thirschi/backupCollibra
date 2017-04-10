@@ -1,0 +1,10 @@
+{
+    "BackupCollibra": {
+        "description": "Backup Collibra and save the zip file",
+        "file": "deploy.zip",
+        "handler": "index.handler",
+        "runtime": "nodejs4.3",
+        "timeout": 30,
+        "role": "lambda_basic_execution"
+    }
+}

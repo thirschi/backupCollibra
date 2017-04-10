@@ -1,0 +1,13 @@
+dependencies:
+    pre:
+        - npm install -g https://github.com/byu-oit-appdev/lambda-auto-deploy
+        
+test:
+    override:
+        - echo hello
+deployment:
+    production:
+        branch: master
+        commands:
+            - zip -r deploy.zip node_modules index.js
+            - lambda-auto-deploy create BackupCollibra lambda.json
