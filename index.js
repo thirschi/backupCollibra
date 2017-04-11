@@ -2,7 +2,7 @@ console.log("before requires");
 var AWS = require('aws-sdk');
 var request = require('request');
 var fs = require('fs');
-exports.handler = function () {
+exports.handler = (event, context, callback) => {
 	console.log("Starting index");
 	var s3 = new AWS.S3({
 		region: 'us-west-2'
@@ -14,6 +14,7 @@ exports.handler = function () {
 	s3.getObject(params, function (err, data) {
 		if (err) console.log(err, err.stack); // an error occurred
 		else {
+			console.log(config);
 			var config = JSON.parse(data.Body.toString());
 			backupData(config);
 		}
