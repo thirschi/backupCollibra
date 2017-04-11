@@ -1,5 +1,5 @@
 {
-  "name": "backupCollibra",
+  "name": "PersonUpdatesForCollibra",
   "version": "1.0.0",
   "description": "Lambda function that updates Collibra Users",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byu-oit-appdev/backupCollibra.git"
+    "url": "git+https://github.com/byu-oit-appdev/PersonUpdatesForCollibra.git"
   },
   "keywords": [
     "node",
@@ -18,9 +18,9 @@
   "author": "Tim Hirschi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/byu-oit-appdev/backupCollibra/issues"
+    "url": "https://github.com/byu-oit-appdev/PersonUpdatesForCollibra/issues"
   },
-  "homepage": "https://github.com/byu-oit-appdev/backupCollibra#readme",
+  "homepage": "https://github.com/byu-oit-appdev/PersonUpdatesForCollibra#readme",
   "dependencies": {
     "adm-zip": "^0.4.7",
     "aws-sdk": "^2.7.0",
