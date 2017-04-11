@@ -1,6 +1,4 @@
-var https = require('https');
 var AWS = require('aws-sdk');
-var path = require('path');
 var request = require('request');
 var fs = require('fs');
 exports.handler = function () {
