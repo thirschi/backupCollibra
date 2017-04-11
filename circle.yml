@@ -10,4 +10,4 @@ deployment:
         branch: master
         commands:
             - zip -r deploy.zip node_modules index.js
-            - lambda-auto-deploy create BackupCollibra lambda.json
+            - lambda-auto-deploy update BackupCollibra lambda.json
