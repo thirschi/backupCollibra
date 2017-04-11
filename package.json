@@ -25,6 +25,5 @@
 	, "dependencies": {
 		"adm-zip": "^0.4.7"
 		, "aws-sdk": "^2.7.0"
-		, "request": "^2.79.0"
 	}
 }
