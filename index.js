@@ -1,7 +1,9 @@
+console.log("before requires");
 var AWS = require('aws-sdk');
 var request = require('request');
 var fs = require('fs');
 exports.handler = function () {
+	console.log("Starting index");
 	var s3 = new AWS.S3({
 		region: 'us-west-2'
 	});
