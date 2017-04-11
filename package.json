@@ -1,5 +1,5 @@
 {
-  "name": "collibra-backup",
+  "name": "backupCollibra",
   "version": "1.0.0",
   "description": "Lambda function that gets calls backup and then downloads the backup",
   "main": "index.js",
