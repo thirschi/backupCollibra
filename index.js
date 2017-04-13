@@ -52,7 +52,8 @@ var backupData = function (config) {
 			region: 'us-west-2'
 		});
 		var zip;
-		console.log("response=" + response);
+		console.log("response=" + JSON.stringify(response));
+		console.log("response 2=" + response.toString());
 		console.log("body=" + body);
 		console.log("error=" + error);
 		setTimeout(function () {
