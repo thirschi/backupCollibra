@@ -10,9 +10,6 @@
 		"type": "git"
 		, "url": "git+https://github.com/byu-oit-appdev/backupCollibra.git"
 	}
-	, "keywords": {
-		"node", "eventHub", "lambda"
-	}
 	, "author": "Tim Hirschi"
 	, "license": "ISC"
 	, "bugs": {
