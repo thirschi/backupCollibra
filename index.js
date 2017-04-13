@@ -1,7 +1,6 @@
 var https = require('https');
 var AWS = require('aws-sdk');
 var path = require('path');
-var request = require('request');
 exports.handler = function () {
 	var s3 = new AWS.S3({
 		region: 'us-west-2'
