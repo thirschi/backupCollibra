@@ -28,8 +28,6 @@ var backupData = function (config) {
 	var day = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 	var authentication = new Buffer(config.un + ':' + config.pass).toString('base64');
 	var fileName = 'Auto Backup-' + day;
-	console.log("backing up data");
-	/*
 	var options = {
 		method: 'POST'
 		, url: 'https://console-byu-5.collibra.com/rest/backup/3Ad925b462-9ece-4dfa-932a-5d9f09989209'
@@ -81,6 +79,5 @@ var backupData = function (config) {
 			});
 		}, 10000);
 	});
-	*/
 	console.log("working here");
 }
