@@ -1,31 +1,27 @@
 {
-  "name": "PersonUpdatesForCollibra",
-  "version": "1.0.0",
-  "description": "Lambda function that updates Collibra Users",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/byu-oit-appdev/PersonUpdatesForCollibra.git"
-  },
-  "keywords": [
-    "node",
-    "eventHub",
-    "lambda"
-  ],
-  "author": "Tim Hirschi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/byu-oit-appdev/PersonUpdatesForCollibra/issues"
-  },
-  "homepage": "https://github.com/byu-oit-appdev/PersonUpdatesForCollibra#readme",
-  "dependencies": {
-    "adm-zip": "^0.4.7",
-    "aws-sdk": "^2.7.0",
-      "request":"^2.79.0",
-      "client-oauth2":"^3.2.0",
-	  "node-uuid":"^1.4.7"
-  }
+	"name": "BackupCollibra"
+	, "version": "1.0.0"
+	, "description": "Lambda function that backups Collibra"
+	, "main": "index.js"
+	, "scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	}
+	, "repository": {
+		"type": "git"
+		, "url": "git+https://github.com/byu-oit-appdev/backupCollibra.git"
+	}
+	, "keywords": {
+		"node", "eventHub", "lambda"
+	}
+	, "author": "Tim Hirschi"
+	, "license": "ISC"
+	, "bugs": {
+		"url": "https://github.com/byu-oit-appdev/backupCollibra/issues"
+	}
+	, "homepage": "https://github.com/byu-oit-appdev/backupCollibra#readme"
+	, "dependencies": {
+		"adm-zip": "^0.4.7"
+		, "aws-sdk": "^2.7.0"
+		, "request": "^2.79.0"
+	}
 }
