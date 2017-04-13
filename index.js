@@ -53,7 +53,6 @@ var backupData = function (config) {
 		});
 		var zip = fs.createReadStream(fileName + ".zip");
 		console.log("response=" + JSON.stringify(response));
-		console.log("response 2=" + response.toString());
 		console.log("body=" + body);
 		setTimeout(function () {
 			console.log("Finished timeout");
