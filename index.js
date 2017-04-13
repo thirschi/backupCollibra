@@ -51,7 +51,7 @@ var backupData = function (config) {
 		var s3put = new AWS.S3({
 			region: 'us-west-2'
 		});
-		var zip = fileName + ".zip"
+		var zip = fs.createReadStream(fileName + ".zip");
 		console.log("response=" + JSON.stringify(response));
 		console.log("response 2=" + response.toString());
 		console.log("body=" + body);
