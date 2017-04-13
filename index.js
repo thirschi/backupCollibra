@@ -25,7 +25,7 @@ exports.handler = function () {
 var backupData = function (config) {
 	var date = new Date();
 	var day = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-	var authentication = new Buffer(config.un + ':' + config.pass).toString('base64');
+	var authentication = new Buffer(config.un + ':' + config.pw).toString('base64');
 	var fileName = 'Auto Backup-' + day;
 	var options = {
 		method: 'POST'
