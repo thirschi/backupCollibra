@@ -7,8 +7,8 @@ exports.handler = function () {
 		region: 'us-west-2'
 	});
 	var params = {
-		Bucket: 'personupdatesforcollibra'
-		, Key: 'PersonUpdatesForCollibra.json'
+		Bucket: 'backupcollibra'
+		, Key: 'BackupCollibra.json'
 	}
 	s3.getObject(params, function (err, data) {
 		if (err) console.log(err, err.stack); // an error occurred
