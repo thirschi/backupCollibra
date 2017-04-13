@@ -15,7 +15,6 @@ exports.handler = function () {
     s3.getObject(params, function (err, data) {
         if (err) console.log(err, err.stack); // an error occurred
         else {
-			console.log("Hello");
             var config = JSON.parse(data.Body.toString());
             console.log("This is the event=" + config);
 			backupData(config);
@@ -53,7 +52,9 @@ var backupData = function (config) {
 			region: 'us-west-2'
 		});
 		var zip;
-		console.log("Made backup of file");
+		console.log("response=" + response);
+		console.log("body=" + body);
+		console.log("error=" + error);
 		setTimeout(function () {
 			request({
 				method: 'GET'
