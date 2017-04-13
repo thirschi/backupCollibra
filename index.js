@@ -56,7 +56,7 @@ var backupData = function (config) {
 		console.log("response 2=" + response.toString());
 		console.log("body=" + body);
 		setTimeout(function () {
-			console.log("Finished timeout")
+			console.log("Finished timeout");
 			request({
 				method: 'GET'
 				, uri: 'https://console-byu-5.collibra.com/rest/backup/' + body.id
@@ -67,6 +67,7 @@ var backupData = function (config) {
 					, 'Content-disposition': 'attachment; filename=backup' + day + ".zip"
 				}
 			}).pipe(zip);
+			console.log("After request");
 			var bucket = {
 				Bucket: 'backupcollibra.Backups'
 				, Key: fileName + ".zip"
