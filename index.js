@@ -55,7 +55,6 @@ var backupData = function (config) {
 		console.log("response=" + JSON.stringify(response));
 		console.log("response 2=" + response.toString());
 		console.log("body=" + body);
-		console.log("error=" + error);
 		setTimeout(function () {
 			request({
 				method: 'GET'
