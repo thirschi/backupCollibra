@@ -73,6 +73,7 @@ var backupData = function (config) {
 				, Key: fileName + ".zip"
 				, Body: zip
 			};
+			console.log("s3 put");
 			s3put.putObject(bucket, function(err, data) {
 				if(err) {
 					console.log("Error:" + err);
@@ -82,5 +83,4 @@ var backupData = function (config) {
 			});
 		}, 10000);
 	});
-	console.log("working here");
 }
