@@ -70,7 +70,7 @@ var backupData = function (config) {
 								else {
 									console.log("Successfully uploaded:" + data);
 								}
-							});
+							}));
 						}, 10000);
 				});
 		}
