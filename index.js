@@ -1,6 +1,6 @@
 var AWS = require('aws-sdk');
 var request = require('request');
-var fs = require('fs');
+var https = require('https');
 exports.handler = function () {
 	var s3 = new AWS.S3({
 		region: 'us-west-2'
@@ -18,59 +18,92 @@ exports.handler = function () {
 	});
 }
 var backupData = function (config) {
-		var date = new Date();
-		var day = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-		var authentication = new Buffer(config.un + ':' + config.pw).toString('base64');
-		var fileName = 'Auto Backup-' + day;
-		var options = {
-			method: 'POST'
-			, url: 'https://console-byu-5.collibra.com/rest/backup/3Ad925b462-9ece-4dfa-932a-5d9f09989209'
-			, headers: {
-				'cache-control': 'no-cache'
-				, 'content-type': 'application/json'
-				, accept: 'application/json'
-				, authorization: 'Basic ' + authentication
-			}
-			, body: {
-				name: fileName
-				, description: 'Automatic Backup-' + day
-				, database: 'dgc'
-				, dgcBackupOptionSet: ['CUSTOMIZATIONS']
-				, repoBackupOptionSet: ['DATA', 'HISTORY', 'CONFIGURATION']
-			}
-			, json: true
-		};
-		request(options, function (error, response, body) {
-				if (error) throw new Error(error);
-				var s3put = new AWS.S3({
-					region: 'us-west-2'
-				});
-				var bucket = {
-					Bucket: 'backupcollibra.Backups'
-					, Key: fileName + ".zip"
-				};
-				console.log("body=" + body);
-				setTimeout(function () {
-						console.log("Finished timeout");
-						request({
-							method: 'GET'
-							, uri: 'https://console-byu-5.collibra.com/rest/backup/' + body.id
-							, gzip: true
-							, 'headers': {
-								'content-type': 'application/zip'
-								, authorization: 'Basic ' + authentication
-								, 'Content-disposition': 'attachment; filename=backup' + day + ".zip"
-							}
-						}).pipe(s3put.putObject(bucket, fs.createWriteStream(fileName + ".zip"), function (err, data) {
-								console.log("After request");
-								console.log("s3 put");
-								if (err) {
-									console.log("Error:" + err);
-								}
-								else {
-									console.log("Successfully uploaded:" + data);
-								}
-							}));
-						}, 10000);
-				});
+	console.log("Starting Backup");
+	var date = new Date();
+	var day = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+	var authentication = new Buffer(config.un + ':' + config.pw).toString('base64');
+	var fileName = 'Auto Backup-' + day;
+	var passObj = {
+		day: day
+		, authentication: authentication
+		, fileName: fileName
+		, config: config
+		, user: config.un
+		, pass: config.pw
+	}
+	var options = {
+		method: 'POST'
+		, url: 'https://console-byu-5.collibra.com/rest/backup/3Ad925b462-9ece-4dfa-932a-5d9f09989209'
+		, headers: {
+			'cache-control': 'no-cache'
+			, 'content-type': 'application/json'
+			, accept: 'application/json'
+			, authorization: 'Basic ' + authentication
 		}
+		, body: {
+			name: fileName
+			, description: 'Automatic Backup-' + day
+			, database: 'dgc'
+			, dgcBackupOptionSet: ['CUSTOMIZATIONS']
+			, repoBackupOptionSet: ['DATA', 'HISTORY', 'CONFIGURATION']
+		}
+		, json: true
+	};
+	request(options, function (error, response, body) {
+		if (error) throw new Error(error);
+		getFile(body, passObj)
+	});
+}
+
+function getFile(body, passObj) {
+	setTimeout(function () {
+		putFileInS3(body, passObj);
+	}, 10000);
+}
+
+function putFileInS3(body, passObj) {
+	console.log('https://console-byu-5.collibra.com/rest/backup/' + body.id);
+	const options = {
+		hostname: 'console-byu-5.collibra.com'
+		, port: 443
+		, path: '/rest/backup/' + body.id
+		, method: 'GET'
+		, headers: {
+			'Authorization': 'Basic ' + passObj.authentication
+		}
+	};
+	const req = https.request(options, (res) => {
+		console.log('statusCode:', res.statusCode);
+		console.log('headers:', res.headers);
+		var bufs = [];
+		res.on('data', function (d) {
+			bufs.push(d);
+		});
+		res.on('end', function () {
+			var buf = Buffer.concat(bufs);
+			s3Put(buf, passObj);
+		});
+	});
+	req.on('error', (e) => {
+		console.error(e);
+	});
+	req.end();
+}
+
+function s3Put(buffer, passObj) {
+	var s3put = new AWS.S3({
+		region: 'us-west-2'
+	});
+	s3put.putObject({
+		Body: buffer
+		, Key: passObj.fileName + ".zip"
+		, Bucket: 'backupcollibra/Backups'
+	}, function (error, data) {
+		if (error) {
+			console.log("error pushing to s3");
+		}
+		else {
+			console.log("success uploading to s3");
+		}
+	});
+}
