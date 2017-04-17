@@ -14,7 +14,7 @@ exports.handler = function () {
 		else {
 			var config = JSON.parse(data.Body.toString());
 			backupData(config);
-		} // successful response
+		}
 	});
 }
 var backupData = function (config) {
