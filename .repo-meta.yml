@@ -15,7 +15,7 @@ stages:
     relationships:
       depends_on:
         software: 
-          - "InfoHub"
+          - "Collibra DGC 5.0 - Prod"
           - "lambda-auto-deploy" # software CI name with optional :<stage name>.  If the stage name is missing the stage we are in will be used.
       supports: # optional object
         software:
