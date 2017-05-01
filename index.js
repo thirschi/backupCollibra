@@ -33,7 +33,7 @@ var backupData = function (config) {
 	}
 	var options = {
 		method: 'POST'
-		, url: 'https://console-byu-5.collibra.com/rest/backup/3Ad925b462-9ece-4dfa-932a-5d9f09989209'
+		, url: 'https://console-byu.collibra.com/rest/backup/3Ad925b462-9ece-4dfa-932a-5d9f09989209'
 		, headers: {
 			'cache-control': 'no-cache'
 			, 'content-type': 'application/json'
@@ -62,9 +62,9 @@ function getFile(body, passObj) {
 }
 
 function putFileInS3(body, passObj) {
-	console.log('https://console-byu-5.collibra.com/rest/backup/' + body.id);
+	console.log('https://console-byu.collibra.com/rest/backup/' + body.id);
 	const options = {
-		hostname: 'console-byu-5.collibra.com'
+		hostname: 'console-byu.collibra.com'
 		, port: 443
 		, path: '/rest/backup/' + body.id
 		, method: 'GET'
