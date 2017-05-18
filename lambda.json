@@ -1,6 +1,6 @@
 {
     "BackupCollibra": {
-        "description": "Backup Collibra and save the zip file",
+        "description": "Backup Collibra and save the zip file to s3",
         "file": "deploy.zip",
         "handler": "index.handler",
         "runtime": "nodejs4.3",
