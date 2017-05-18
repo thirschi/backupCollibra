@@ -51,14 +51,14 @@ var backupData = function (config) {
 	};
 	request(options, function (error, response, body) {
 		if (error) throw new Error(error);
-		getFile(body, passObj)
+		getFile(body, passObj);
 	});
 }
 
 function getFile(body, passObj) {
 	setTimeout(function () {
 		putFileInS3(body, passObj);
-	}, 10000);
+	}, 16000);
 }
 
 function putFileInS3(body, passObj) {
@@ -94,6 +94,7 @@ function s3Put(buffer, passObj) {
 	var s3put = new AWS.S3({
 		region: 'us-west-2'
 	});
+	console.log("putting file into s3");
 	s3put.putObject({
 		Body: buffer
 		, Key: passObj.fileName + ".zip"
@@ -106,4 +107,6 @@ function s3Put(buffer, passObj) {
 			console.log("success uploading to s3");
 		}
 	});
+	setTimeout(function () {
+	}, 5000);
 }
