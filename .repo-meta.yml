@@ -1,24 +1,25 @@
 ---
-$schemaver: "1.0" # required
-name: "backupCollibra"
-type: "background process"
-short_description: "Backup Collibra and save backup"
-assignment_group: "ad-tools"
-microservice: true
-technologies_used:
-  - NodeJS
-  - Lambda
-stages:
-  production:
-    hosting_location: "AWS"
-    aws_account: "oittools-sla-ad-oit-byu"
-    relationships:
-      depends_on:
-        software: 
-          - "Collibra DGC 5.0"
-          - "lambda-auto-deploy" # software CI name with optional :<stage name>.  If the stage name is missing the stage we are in will be used.
-      supports: # optional object
-        software:
-          - "InfoHub"
-tags:
-  - data-sensitivity: "internal"
+$schemaver: 2.0
+software:
+  - name: backupCollibra
+    type: background process
+    short_description: Backup Collibra and save backup
+    assignment_group: ad-tools
+    microservice: true
+    technologies_used:
+      - NodeJS
+      - Lambda
+    stages:
+        production:
+            hosting_location: AWS
+            aws_account: oittools-sla-ad-oit-byu
+            relationships:
+                depends_on:
+                    software:
+                      - Collibra DGC 5.0
+                      - lambda-auto-deploy # software CI name with optional :<stage name>.  If the stage name is missing the stage we are in will be used.
+                supports: # optional object
+                    software:
+                      - InfoHub
+    tags:
+      - data-sensitivity: internal
